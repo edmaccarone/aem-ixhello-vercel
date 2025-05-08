@@ -2,25 +2,21 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  console.log('📥 Incoming request to /api/aem-page');
+  console.log('Incoming request to /api/aem-page (mocked)');
 
   try {
-    const response = await axios.get('http://localhost:4502/content/ixhello-integration-demo/us/en.model.json', {
-      auth: {
-        username: 'admin',
-        password: 'admin'
+    // Simulate the structure from your actual model.json
+    const mockData = {
+      title: "ixhello Integration Demo",
+      teaser: {
+        title: "Epic Journey",
+        description: "Don't stop half way, go for the top!"
       }
-    });
+    };
 
-    if (!response.data || typeof response.data !== 'object') {
-      console.error('❌ Invalid or empty data received from AEM');
-      return res.status(500).json({ error: 'Invalid data from AEM' });
-    }
-
-    console.log('✅ AEM data fetched. Sending to client...');
-    res.json(response.data);
+    res.json(mockData);
   } catch (err) {
-    console.error('❌ Error fetching from AEM:', err.message);
-    res.status(500).json({ error: 'Fetch failed', detail: err.message });
+    console.error('Error serving mock data:', err.message);
+    res.status(500).json({ error: 'Mock data failed', detail: err.message });
   }
 };
