@@ -1,11 +1,10 @@
-
 {
   "version": 2,
   "builds": [
     { "src": "api/aem-page.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/aem-page", "dest": "api/aem-page.js" }
-	{ "src": "/", "dest": "/aem-page" }
+    { "src": "/aem-page", "dest": "api/aem-page.js" },
+    { "src": "/", "dest": "api/aem-page.js" }
   ]
 }
